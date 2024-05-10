@@ -1,4 +1,6 @@
 local SCRIPT_VERSION = "1.0.0"
+-- Made by https://github.com/ARtaDex/Body_Accessories
+-- Modified by boncabe
 
 --PROP LIST
 
@@ -17,13 +19,6 @@ local prop_list = {
         Used = {},
         Use = false
     },
-    ["Wings"] = {
-        Prop = 'vw_prop_art_wings_01a',
-        PropBone = 24818,
-        PropPlacement =  {-1.4, -0.2, 0.0, 0.0, 90.0, 175.0},
-        Used = {},
-        Use = false
-    },
     ["Backpack3"] = {
         Prop = 'xm3_prop_xm3_backpack_01a',
         PropBone = 24817,
@@ -31,24 +26,10 @@ local prop_list = {
         Used = {},
         Use = false
     },
-    ["Guitar"] = {
+    ["Guitar Case"] = {
         Prop = 'sf_prop_sf_guitar_case_01a',
         PropBone = 24817,
         PropPlacement =  {-0.05, -0.09, 0.0, 90.0, 90.0, 0.0},
-        Used = {},
-        Use = false
-    },
-    ["Weed"] = {
-        Prop = 'bkr_prop_weed_drying_02a',
-        PropBone = 24817,
-        PropPlacement =  {0.450, -0.2, 0.0, 0.0, 90.0, 10.0},
-        Used = {},
-        Use = false
-    },
-    ["Shield"] = {
-        Prop = 'prop_ballistic_shield',
-        PropBone = 24817,
-        PropPlacement =  {0.20, 0.25, 0.0, 180.0, 270.0, 0.0},
         Used = {},
         Use = false
     },
@@ -66,23 +47,144 @@ local prop_list = {
         Used = {},
         Use = false
     },
-    ["SkateBoard"] = {
+    ["Skate Board"] = {
         Prop = 'v_res_skateboard',
         PropBone = 24817,
         PropPlacement =  {-0.1, -0.26, 0.0, 259.0, 90.0, 0.0},
         Used = {},
         Use = false
     },
-    ["SurfBoard"] = {
+    ["Surf Board"] = {
         Prop = 'prop_surf_board_ldn_02',
         PropBone = 24817,
         PropPlacement =  {0.5, -0.2, 0.0, 0.0, 90.0, 0.0},
         Used = {},
         Use = false
     },
+	["Umbrella"] = {
+        Prop = 'v_res_fa_umbrella',
+        PropBone = 24817,
+	 -- PropPlacement =  {a/b, d/b, kr/kn, yaw, pitch, roll},
+        PropPlacement =  {-0.2, -0.14, -0.2, 0.0, 60.0, 0.0},
+        Used = {},
+        Use = false
+    },
+	["Scuba Tank"] = {
+        Prop = 'p_michael_scuba_tank_s',
+        PropBone = 24818,
+        PropPlacement =  {-0.3, -0.23, 0.0, 0.0, 90.0, 175.0},
+        Used = {},
+        Use = false
+    },
+	["Body B0mb"] = {
+        Prop = 'h4_prop_h4_ld_bomb_01a',
+        PropBone = 24817,
+        PropPlacement =  {0.05, 0.175, 0.0, 0.0, 90.0, 180.0},
+        Used = {},
+        Use = false
+    },
+	["Ear Phone"] = {
+        Prop = 'prop_headset_01',
+        PropBone = 31086,
+        PropPlacement =  {0.07, 0.0, 0.0, 0.0, 90.0, 180.0},
+        Used = {},
+        Use = false
+    },
+	["D1ck"] = {
+        Prop = 'v_res_d_dildo_c',
+        PropBone = 24817,
+        PropPlacement =  {-0.28, 0.08, 0.0, -90.0, 0.00, 0.0},
+        Used = {},
+        Use = false
+    },
+	["Handbag"] = {
+        Prop = 'prop_amb_handbag_01',
+        PropBone = 24818,
+        PropPlacement =  {-0.07, -0.03, 0.2, 0.0, 90.0, -90.0},
+        Used = {},
+        Use = false
+    },
+	["Handbag2"] = {
+        Prop = 'prop_ld_handbag_s',
+        PropBone = 24818,
+        PropPlacement =  {-0.21, -0.03, 0.2, 0.0, 90.0, -90.0},
+        Used = {},
+        Use = false
+    },
+	["Teddy Bear"] = {
+        Prop = 'v_ilev_mr_rasberryclean',
+        PropBone = 39317,
+        PropPlacement =  {0.0, -0.08, 0.0, -24.0, 90.0, 180.0},
+        Used = {},
+        Use = false
+    },
+	["Big Drone"] = {
+        Prop = 'reh_prop_reh_drone_02a',
+        PropBone = 31086,
+     -- PropBone = 39317,
+        PropPlacement =  {3.0, 0.0, 0.0, 0.0, 90.0, 180.0},
+        Used = {},
+        Use = false
+    },
+    ["Drone"] = {
+        Prop = 'ba_prop_battle_cameradrone',
+        PropBone = 24818,
+        PropPlacement =  {0.34, 0.0, 0.24, 0.0, 90.0, 180.0},
+        Used = {},
+        Use = false
+    },
+    ["Drone2"] = {
+        Prop = 'ch_prop_casino_drone_01a',
+        PropBone = 24818,
+        PropPlacement =  {0.36, 0.0, 0.26, 0.0, 90.0, 180.0},
+        Used = {},
+        Use = false
+    },
+	["Fishing Rod"] = {
+        Prop = 'prop_fishing_rod_01',
+        PropBone = 24817,
+        PropPlacement =  {-0.1, -0.16, -0.14, 0.0, 86.0, 45.0},
+        Used = {},
+        Use = false
+    },
+	["Glasses"] = {
+        Prop = 'prop_cs_sol_glasses',
+        PropBone = 31086,
+        PropPlacement =  {0.1, 0.06, 0.0, -40.0, 90.0, 180.0},
+        Used = {},
+        Use = false
+    },
+	
 }
 
---DUFFEL BAG
+--HELD PROP LIST
+
+local held_list = {
+    ["Hand Katana"] = {
+        Prop = 'prop_cs_katana_01',
+        PropBone = 57005,
+	 -- PropPlacement =  {a/b, d/b, kr/kn, yaw, pitch, roll},
+        PropPlacement =  {0.110, 0.0, -0.018, -70.0, 0.0, -10.0},
+        Used = {},
+        Use = false
+    },
+	["Hand Pick Axe"] = {
+        Prop = 'prop_tool_pickaxe',
+        PropBone = 57005,
+        PropPlacement =  {0.110, 0.0, -0.018, -70.0, 0.0, -10.0},
+        Used = {},
+        Use = false
+    },
+	["Hand Fire Axe"] = {
+        Prop = 'prop_tool_fireaxe',
+        PropBone = 57005,
+        PropPlacement =  {0.110, 0.0, -0.018, 70.0, 0.0, 180.0},
+        Used = {},
+        Use = false
+    },
+}
+
+--DUFFEL BAG LIST
 
 local duffel_list = {
     ["Duffel Bag Blue"] = {
@@ -253,7 +355,7 @@ local plushie_list = {
     },
 }
 
---PLUSHIE BACKPACK
+--PLUSHIE BACKPACK LIST
 
 local plushiepack_list = {
     ["Backpack Purple Cat"] = {
@@ -326,10 +428,18 @@ local plushiepack_list = {
         Used = {},
         Use = false
     },
+	["Backpack Teddy Bear"] = {
+        Prop = 'v_ilev_mr_rasberryclean',
+        PropBone = 24817,
+	 -- PropPlacement =  {a/b, d/b, kr/kn, yaw, pitch, roll},
+        PropPlacement =  {0.0, -0.2, 0.0, 0.0, 90.0, 0.0},
+        Used = {},
+        Use = false
+    },
 }
 
 
---LIST WEAPON PROP
+--WEAPON PROP LIST
 
 local weapon_list = {
     ["Weapon Katana Left"] = {
@@ -356,7 +466,7 @@ local weapon_list = {
     ["Weapon Heavy Sniper"] = {
         Prop = 'w_sr_heavysniper',
         PropBone = 24817,
-        PropPlacement =  {0.2,-0.20,0.1,0.0,160.5,0.0}, --atas bawah , maju mundul , kiri kanan
+        PropPlacement =  {0.2,-0.20,0.1,0.0,160.5,0.0},
         Used = {},
         Use = false
     },
@@ -405,7 +515,8 @@ local weapon_list = {
     ["Weapon Homing Launcher"] = {
         Prop = 'w_lr_homing',
         PropBone = 24817,
-        PropPlacement = {0.35, -0.18, 0.0, 0.0, 0.0, 0.0}, 
+	 -- PropPlacement =  {a/b, d/b, kr/kn, yaw, pitch, roll},
+        PropPlacement = {0.35, -0.18, -0.12, 0.0, 25.0, 0.0}, 
         Used = {},
         Use = false
     },
@@ -475,7 +586,8 @@ local weapon_list = {
     ["Weapon RPG"] = {
         Prop = 'w_lr_rpg_m31',
         PropBone = 24817,
-        PropPlacement =  {0.35, -0.18, 0.0, 0.0, 0.0, 0.0}, 
+	 -- PropPlacement =  {a/b, d/b, kr/kn, yaw, pitch, roll},
+        PropPlacement =  {0.35, -0.18, -0.12, 0.0, 25.0, 0.0}, 
         Used = {},
         Use = false
     },
@@ -503,7 +615,8 @@ local weapon_list = {
     ["Weapon FireWork"] = {
         Prop = 'w_lr_firework',
         PropBone = 24817,
-        PropPlacement = {0.35, -0.18, 0.0, 0.0, 0.0, 0.0}, 
+	 -- PropPlacement =  {a/b, d/b, kr/kn, yaw, pitch, roll},
+        PropPlacement =  {0.35, -0.18, -0.12, 0.0, 25.0, 0.0},
         Used = {},
         Use = false
     },
@@ -782,14 +895,9 @@ end
 
 --menu
 
-OptMisc = menu.list(menu.my_root(), "Body Accessories", {}, "", function(); end)
-menu.action(OptMisc, "Choose Body Prop Below", {''}, "", function(on_click)
-    stopAnimation()
-end)
-
-OptProp = menu.list(OptMisc, "Any Prop", {}, "", function(); end)
+OptAP = menu.list(menu.my_root(), "Any Prop", {}, "", function(); end)
 for k,v in spairs(prop_list, function(t, a, b) return t[b][3] end) do
-    menu.toggle(OptProp, k, {"use" .. k}, "", function (on_change)
+    menu.toggle(OptAP, k, {"use" .. k}, "", function (on_change)
         if on_change then
             addProps(v.Prop, v.PropBone, v.PropPlacement[1], v.PropPlacement[2], v.PropPlacement[3], v.PropPlacement[4], v.PropPlacement[5], v.PropPlacement[6], v.Used)
             v.Use = true
@@ -801,9 +909,9 @@ for k,v in spairs(prop_list, function(t, a, b) return t[b][3] end) do
     util.yield()
 end
 
-OptProp = menu.list(OptMisc, "Duffel Bag", {}, "", function(); end)
+OptDB = menu.list(menu.my_root(), "Duffel Bag", {}, "", function(); end)
 for k,v in spairs(duffel_list, function(t, a, b) return t[b][3] end) do
-    menu.toggle(OptProp, k, {"use" .. k}, "", function (on_change)
+    menu.toggle(OptDB, k, {"use" .. k}, "", function (on_change)
         if on_change then
             addProps(v.Prop, v.PropBone, v.PropPlacement[1], v.PropPlacement[2], v.PropPlacement[3], v.PropPlacement[4], v.PropPlacement[5], v.PropPlacement[6], v.Used)
             v.Use = true
@@ -815,9 +923,9 @@ for k,v in spairs(duffel_list, function(t, a, b) return t[b][3] end) do
     util.yield()
 end
 
-OptProp = menu.list(OptMisc, "Plushie & Figure", {}, "", function(); end)
+OptPP = menu.list(menu.my_root(), "Plushie & Figure", {}, "", function(); end)
 for k,v in spairs(plushie_list, function(t, a, b) return t[b][3] end) do
-    menu.toggle(OptProp, k, {"use" .. k}, "", function (on_change)
+    menu.toggle(OptPP, k, {"use" .. k}, "", function (on_change)
         if on_change then
             addProps(v.Prop, v.PropBone, v.PropPlacement[1], v.PropPlacement[2], v.PropPlacement[3], v.PropPlacement[4], v.PropPlacement[5], v.PropPlacement[6], v.Used)
             v.Use = true
@@ -829,9 +937,9 @@ for k,v in spairs(plushie_list, function(t, a, b) return t[b][3] end) do
     util.yield()
 end
 
-OptProp = menu.list(OptMisc, "Backpack Figure", {}, "", function(); end)
+OptBF = menu.list(menu.my_root(), "Backpack Figure", {}, "", function(); end)
 for k,v in spairs(plushiepack_list, function(t, a, b) return t[b][3] end) do
-    menu.toggle(OptProp, k, {"use" .. k}, "", function (on_change)
+    menu.toggle(OptBF, k, {"use" .. k}, "", function (on_change)
         if on_change then
             addProps(v.Prop, v.PropBone, v.PropPlacement[1], v.PropPlacement[2], v.PropPlacement[3], v.PropPlacement[4], v.PropPlacement[5], v.PropPlacement[6], v.Used)
             v.Use = true
@@ -843,9 +951,23 @@ for k,v in spairs(plushiepack_list, function(t, a, b) return t[b][3] end) do
     util.yield()
 end
 
-OptProp = menu.list(OptMisc, "Weapon Prop", {}, "", function(); end)
+OptWP = menu.list(menu.my_root(), "Weapon Prop", {}, "", function(); end)
 for k,v in spairs(weapon_list, function(t, a, b) return t[b][3] end) do
-    menu.toggle(OptProp, k, {"use" .. k}, "", function (on_change)
+    menu.toggle(OptWP, k, {"use" .. k}, "", function (on_change)
+        if on_change then
+            addProps(v.Prop, v.PropBone, v.PropPlacement[1], v.PropPlacement[2], v.PropPlacement[3], v.PropPlacement[4], v.PropPlacement[5], v.PropPlacement[6], v.Used)
+            v.Use = true
+        else 
+            clearProps(v.Used)
+            v.Use = false
+        end
+    end, v.Use)
+    util.yield()
+end
+
+OptHP = menu.list(menu.my_root(), "Held Prop", {}, "", function(); end)
+for k,v in spairs(held_list, function(t, a, b) return t[b][3] end) do
+    menu.toggle(OptHP, k, {"use" .. k}, "", function (on_change)
         if on_change then
             addProps(v.Prop, v.PropBone, v.PropPlacement[1], v.PropPlacement[2], v.PropPlacement[3], v.PropPlacement[4], v.PropPlacement[5], v.PropPlacement[6], v.Used)
             v.Use = true
