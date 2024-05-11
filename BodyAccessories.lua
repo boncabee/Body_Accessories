@@ -1,6 +1,6 @@
 local SCRIPT_VERSION = "1.0.0"
 -- Made by https://github.com/ARtaDex/Body_Accessories
--- Modified by boncabe
+-- Modified by boncabee https://github.com/boncabee/Body_Accessories
 
 --PROP LIST
 
