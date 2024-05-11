@@ -1,3 +1,7 @@
-# Body_Accessories
+# Body Accessories
 
-This Script Contain GTA 5 Online Modification Lua For Stand You Can Add Prop In Your Character Body
+![x](https://github.com/boncabee/Body_Accessories/blob/main/cover_ba.png)
+
+A lua script made for [Stand Menu](https://stand.gg/) GTA Online.
+
+This script contains add prop to your character.
