@@ -1,25 +1,57 @@
-local SCRIPT_VERSION = "1.0.0"
--- Made by https://github.com/ARtaDex/Body_Accessories
+-- Made by ARtaDex https://github.com/ARtaDex/Body_Accessories
 -- Modified by boncabee https://github.com/boncabee/Body_Accessories
+-- 'x, y, z, yaw, pitch, roll' system https://www.researchgate.net/profile/Robert-Huck/publication/253569466/figure/fig4/AS:668355946094593@1536359883214/xyz-and-pitch-roll-and-yaw-systems.ppm
+
+local SCRIPT_VERSION = "1.0.0"
+
+-- Auto Updater from https://github.com/hexarobi/stand-lua-auto-updater
+local status, auto_updater = pcall(require, "auto-updater")
+if not status then
+    local auto_update_complete = nil util.toast("Installing auto-updater...", TOAST_ALL)
+    async_http.init("raw.githubusercontent.com", "/hexarobi/stand-lua-auto-updater/main/auto-updater.lua",
+            function(result, headers, status_code)
+                local function parse_auto_update_result(result, headers, status_code)
+                    local error_prefix = "Error downloading auto-updater: "
+                    if status_code ~= 200 then util.toast(error_prefix..status_code, TOAST_ALL) return false end
+                    if not result or result == "" then util.toast(error_prefix.."Found empty file.", TOAST_ALL) return false end
+                    filesystem.mkdir(filesystem.scripts_dir() .. "lib")
+                    local file = io.open(filesystem.scripts_dir() .. "lib\\auto-updater.lua", "wb")
+                    if file == nil then util.toast(error_prefix.."Could not open file for writing.", TOAST_ALL) return false end
+                    file:write(result) file:close() util.toast("Successfully installed auto-updater lib", TOAST_ALL) return true
+                end
+                auto_update_complete = parse_auto_update_result(result, headers, status_code)
+            end, function() util.toast("Error downloading auto-updater lib. Update failed to download.", TOAST_ALL) end)
+    async_http.dispatch() local i = 1 while (auto_update_complete == nil and i < 40) do util.yield(250) i = i + 1 end
+    if auto_update_complete == nil then error("Error downloading auto-updater lib. HTTP Request timeout") end
+    auto_updater = require("auto-updater")
+end
+if auto_updater == true then error("Invalid auto-updater lib. Please delete your Stand/Lua Scripts/lib/auto-updater.lua and try again") end
+
+-- Run auto-update
+local auto_update_config = {
+    source_url="https://raw.githubusercontent.com/boncabee/Body_Accessories/main/BodyAccessories.lua",
+    script_relpath=SCRIPT_RELPATH,
+}
+auto_updater.run_auto_update(auto_update_config)
 
 --PROP LIST
 
 local prop_list = {
-    ["Backpack1"] = {
+    ["Backpack Grey"] = {
         Prop = 'sf_prop_sf_backpack_03a',
         PropBone = 24818,
         PropPlacement =  {0.07, -0.11, -0.05, 0.0, 90.0, 175.0},
         Used = {},
         Use = false
     },
-    ["Backpack2"] = {
+    ["Backpack Blue"] = {
         Prop = 'p_michael_backpack_s',
         PropBone = 24818,
         PropPlacement =  {0.07, -0.11, -0.05, 0.0, 90.0, 175.0},
         Used = {},
         Use = false
     },
-    ["Backpack3"] = {
+    ["Backpack Black"] = {
         Prop = 'xm3_prop_xm3_backpack_01a',
         PropBone = 24817,
         PropPlacement =  {0.150, -0.2, 0.0, 65.0, 90.0, 10.0},
@@ -97,14 +129,14 @@ local prop_list = {
         Used = {},
         Use = false
     },
-	["Handbag"] = {
+	["Handbag Black"] = {
         Prop = 'prop_amb_handbag_01',
         PropBone = 24818,
         PropPlacement =  {-0.07, -0.03, 0.2, 0.0, 90.0, -90.0},
         Used = {},
         Use = false
     },
-	["Handbag2"] = {
+	["Handbag Brown"] = {
         Prop = 'prop_ld_handbag_s',
         PropBone = 24818,
         PropPlacement =  {-0.21, -0.03, 0.2, 0.0, 90.0, -90.0},
@@ -584,10 +616,17 @@ local weapon_list = {
         Use = false
     },
     ["Weapon RPG"] = {
-        Prop = 'w_lr_rpg_m31',
+        Prop = 'w_lr_rpg',
         PropBone = 24817,
 	 -- PropPlacement =  {a/b, d/b, kr/kn, yaw, pitch, roll},
         PropPlacement =  {0.35, -0.18, -0.12, 0.0, 25.0, 0.0}, 
+        Used = {},
+        Use = false
+    },
+    ["Weapon RPG Rocket"] = {
+        Prop = 'w_lr_rpg_rocket',
+        PropBone = 24817,
+        PropPlacement =  {0.65, -0.18, -0.225, -90.0, -65.0, 0.0}, 
         Used = {},
         Use = false
     },
@@ -671,26 +710,26 @@ local isHansUp = false
 
 util.require_natives(1651208000)
 
-local function notify(message)
-    HUD.BEGIN_TEXT_COMMAND_THEFEED_POST("STRING")
-    HUD.ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME(message)
-    HUD.END_TEXT_COMMAND_THEFEED_POST_TICKER(0, 1)
-end
+-- local function notify(message)
+    -- HUD.BEGIN_TEXT_COMMAND_THEFEED_POST("STRING")
+    -- HUD.ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME(message)
+    -- HUD.END_TEXT_COMMAND_THEFEED_POST_TICKER(0, 1)
+-- end
 
-local function loadAnimation(dict)
-    while not STREAMING.HAS_ANIM_DICT_LOADED(dict) do
-        STREAMING.REQUEST_ANIM_DICT(dict)
-        util.yield()
-    end
-end
+-- local function loadAnimation(dict)
+    -- while not STREAMING.HAS_ANIM_DICT_LOADED(dict) do
+        -- STREAMING.REQUEST_ANIM_DICT(dict)
+        -- util.yield()
+    -- end
+-- end
 
-local function playerIsMale()
-    if ENTITY.GET_ENTITY_MODEL(PLAYER.PLAYER_PED_ID()) == util.joaat("mp_m_freemode_01") then
-        return true
-    else 
-        return false
-    end
-end
+-- local function playerIsMale()
+    -- if ENTITY.GET_ENTITY_MODEL(PLAYER.PLAYER_PED_ID()) == util.joaat("mp_m_freemode_01") then
+        -- return true
+    -- else 
+        -- return false
+    -- end
+-- end
 
 local function addProps(model, bone, off1, off2, off3, rot1, rot2, rot3, localSave)
     local playerPed = PLAYER.PLAYER_PED_ID()
@@ -858,17 +897,17 @@ end
 
 end
 
-function stopAnimation()
-    if IsInAnimation then
-        if #PlayerParticles > 0 then ptfxStop() end
-        TASK.CLEAR_PED_TASKS(PLAYER.PLAYER_PED_ID())
-        TASK.CLEAR_PED_SECONDARY_TASK(PLAYER.PLAYER_PED_ID())
-    end
-    if PlayerHasProp then clearProps(PlayerProps) end
-    IsInAnimation = false
-    PtfxCanHold = false
-    PtfxPrompt = false
-end
+-- function stopAnimation()
+    -- if IsInAnimation then
+        -- if #PlayerParticles > 0 then ptfxStop() end
+        -- TASK.CLEAR_PED_TASKS(PLAYER.PLAYER_PED_ID())
+        -- TASK.CLEAR_PED_SECONDARY_TASK(PLAYER.PLAYER_PED_ID())
+    -- end
+    -- if PlayerHasProp then clearProps(PlayerProps) end
+    -- IsInAnimation = false
+    -- PtfxCanHold = false
+    -- PtfxPrompt = false
+-- end
 
 function IsPlayerAiming(player)
     return PLAYER.IS_PLAYER_FREE_AIMING(player) or CAM.IS_AIM_CAM_ACTIVE() or CAM._IS_AIM_CAM_THIRD_PERSON_ACTIVE()
@@ -892,6 +931,22 @@ function spairs(t, order)
         end
     end
 end
+
+-- function removeObjectsFromPlayer(pid)
+	-- ped = PLAYER.GET_PLAYER_PED(pid)
+	-- if ped then
+		-- for key, value in pairs(getAllObjects()) do
+			-- if ped == ENTITY.GET_ENTITY_ATTACHED_TO(value) then
+				-- if WEAPON.GET_CURRENT_PED_WEAPON_ENTITY_INDEX(ped,false) ~= value then
+				-- RequestControlOfEnt(value)
+				-- hash = ENTITY.GET_ENTITY_MODEL(value)
+				-- ENTITY.DETACH_ENTITY(value, true,false)
+				-- ENTITY.SET_ENTITY_COORDS(value,0,0,0,true,false,false,true)
+				-- end
+			-- end
+		-- end
+	-- end
+-- end
 
 --menu
 
@@ -979,6 +1034,10 @@ for k,v in spairs(held_list, function(t, a, b) return t[b][3] end) do
     util.yield()
 end
 
+-- menu.action(menu.my_root(),"Detach All Objects", {"detachobjects"}, "",function()
+	-- removeObjectsFromPlayer(PLAYER.PLAYER_ID())
+-- end)
+
 players.on_join(function(pid)
     if pid == players.user() then
         while memory.read_int(memory.script_global(1574988)) ~= 66 do util.yield() end
@@ -989,56 +1048,3 @@ players.on_join(function(pid)
         end
     end
 end)
-
---loop
-
-util.create_thread(function()
-	while true do
-		if PtfxPrompt then 
-            if PAD.IS_CONTROL_PRESSED(0, 47) then
-                ptfxStart(CurrentAnimation)
-                util.yield(PtfxWait)
-                if PtfxCanHold then
-                    while PAD.IS_CONTROL_PRESSED(0, 47) and IsInAnimation do
-                        util.yield(10)
-                    end
-                end
-                ptfxStop()
-            end
-        end
-		util.yield()
-	end
-end)
-
-while true do
-    if X_HandsUp then
-        if PAD.IS_CONTROL_PRESSED(1, 323) then
-            loadAnimation("random@mugging3")
-            if not ENTITY.IS_ENTITY_PLAYING_ANIM(PLAYER.PLAYER_PED_ID(), "random@mugging3", "handsup_standing_base", 3) then
-                stopAnimation()
-                WEAPON.GIVE_WEAPON_TO_PED(PLAYER.PLAYER_PED_ID(), MISC.GET_HASH_KEY("WEAPON_UNARMED"), 1, false, true)
-                TASK.TASK_PLAY_ANIM(PLAYER.PLAYER_PED_ID(), "random@mugging3", "handsup_standing_base", 4, 4, -1, 51, 0, false, false, false)
-                STREAMING.REMOVE_ANIM_DICT("random@mugging3")
-                PED.SET_ENABLE_HANDCUFFS(PLAYER.PLAYER_PED_ID(), true)
-                IsInAnimation = true
-            end
-        end
-        if PAD.IS_CONTROL_RELEASED(1, 323) and ENTITY.IS_ENTITY_PLAYING_ANIM(PLAYER.PLAYER_PED_ID(), "random@mugging3", "handsup_standing_base", 3) then
-            PED.SET_ENABLE_HANDCUFFS(PLAYER.PLAYER_PED_ID(), false)
-            stopAnimation()
-        end
-    end
-
-    -- crouch
-    if isCrouched then
-        if IsPlayerAiming(PLAYER.PLAYER_PED_ID()) then
-            -- limiting movement when aiming
-            PED.SET_PED_MAX_MOVE_BLEND_RATIO(PLAYER.PLAYER_PED_ID(), 0.2)
-        end
-        -- stay crouched 
-        -- idk it doesn't work when characters punch :/
-        PED.SET_PED_USING_ACTION_MODE(PLAYER.PLAYER_PED_ID(), false, -1, "DEFAULT_ACTION")
-    end
-
-    util.yield()
-end
