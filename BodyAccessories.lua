@@ -1037,6 +1037,13 @@ for k,v in spairs(held_list, function(t, a, b) return t[b][3] end) do
     util.yield()
 end
 
+OptMisc = menu.list(menu.my_root(), "Misc", {}, "", function(); end)
+menu.action(OptMisc, "Check for update", {}, "Manually check for updates.", function()
+    auto_update_config.check_interval = 0
+    util.toast("Checking for updates")
+    auto_updater.run_auto_update(auto_update_config)
+end)
+
 -- menu.action(menu.my_root(),"Detach All Objects", {"detachobjects"}, "",function()
 	-- removeObjectsFromPlayer(PLAYER.PLAYER_ID())
 -- end)
