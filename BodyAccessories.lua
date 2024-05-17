@@ -36,6 +36,7 @@ local auto_update_config = {
     source_url="https://raw.githubusercontent.com/boncabee/Body_Accessories/main/BodyAccessories.lua",
     script_relpath=SCRIPT_RELPATH
 }
+auto_updater.run_auto_update(auto_update_config)
 
 --PROP LIST
 
